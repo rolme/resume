@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Generate Contact Information Types
+%w[home_phone mobile_phone personal_email url github linkedin twitter instagram facebook].each do |t|
+	ContactType.create! name: t
+end

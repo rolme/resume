@@ -2,12 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'pg'
+gem 'devise'
+gem 'cancan'
 gem 'therubyracer', :platforms => :ruby
 gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'simple_form'
 
 group :development do
+  gem 'omglog'
   gem "pry"
   gem "awesome_print"
   gem "better_errors"
@@ -16,12 +19,16 @@ group :development do
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-livereload'
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine'
   gem 'faker'
+  gem 'launchy'
   gem 'fabrication'
 end
 
