@@ -9,8 +9,7 @@ Given(/^I am on the homepage$/) do
 end
 
 Given(/^I have a valid account$/) do
-  auth = Fabricate.build(:authentication, email: "test@test.com", password: "12341234", password_confirmation: "12341234")
-  user = Fabricate(:user, last_name: "last", first_name: "first", authentication: auth)
+  user = Fabricate.build(:user, email: "test@test.com", password: "password", password_confirmation: "password")
 end
 
 When(/^I fill in "(.*?)" field with "(.*?)"$/) do |arg1, arg2|

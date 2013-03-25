@@ -6,10 +6,6 @@
     = f.input :email, :required => true
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
-
-    = f.simple_fields_for :user do |u|
-      = u.input :first_name, :required => true
-      = u.input :last_name, :required => true
   .form-actions
-    = f.button :submit, "Sign up"
-= render "users/shared/links"
+    = f.button :submit, "Sign up", :class => "btn btn-primary"
+= render "devise/shared/links"

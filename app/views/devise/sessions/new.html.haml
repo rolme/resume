@@ -5,7 +5,7 @@
                             :url => session_path(resource_name), 
                             :html => { :class => 'form-horizontal, navbar-form' }) do |f|
   .form-inputs
-    = f.input_field :email, :required => true, :autofocus => true, :label => false, :placeholder => t(:email)
+    = f.input_field :login, :required => true, :autofocus => true, :label => false, :placeholder => t(:login)
     = f.input_field :password, :required => true, :label => false, :placeholder => t(:password)
     = f.button :submit, "Sign in", :class => 'btn'
   .form-actions

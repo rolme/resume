@@ -10,3 +10,6 @@
 %w[home_phone mobile_phone personal_email url github linkedin twitter instagram facebook].each do |t|
 	ContactType.create! name: t
 end
+
+User.create!(handle: "admin", email: "roland.parnaso+resume.admin@gmail.com",
+             password: "adminadmin", password_confirmation: "adminadmin")

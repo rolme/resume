@@ -1,7 +1,6 @@
 Fabricator(:user) do
-  new_password = Faker::Company.catch_phrase 
-
-  first_name            { Faker::Name.first_name }
-  last_name             { Faker::Name.last_name }
-  authentication
+	email 									{ Faker::Internet.safe_email }
+	password 								"12341234"
+	password_confirmation		"12341234"
+	handle									"test-handle"
 end
