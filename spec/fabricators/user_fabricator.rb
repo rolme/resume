@@ -1,6 +1,13 @@
 Fabricator(:user) do
 	email 									{ Faker::Internet.safe_email }
-	password 								"12341234"
-	password_confirmation		"12341234"
-	handle									"test-handle"
+	password 								"password"
+	password_confirmation		"password"
+	handle									{ Faker::Name.first_name }
+end
+
+Fabricator(:test_user, from: :user) do
+  email                   "test@mail.com"
+  password                "password"
+  password_confirmation   "password"
+  handle                  "test"
 end

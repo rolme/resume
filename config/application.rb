@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
 if defined?(Bundler)
@@ -9,10 +8,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-config_file = File.exists?('../application.yml') ? 'application.yml' : 'application.template.yml'
-CONFIG = YAML.load(File.read(File.expand_path('../' + config_file, __FILE__)))
-CONFIG.merge! CONFIG.fetch(Rails.env, {})
-CONFIG.symbolize_keys!
+require File.expand_path("../config.rb", __FILE__)
 
 module Resume
   class Application < Rails::Application

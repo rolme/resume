@@ -5,11 +5,49 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require File.expand_path("../../config/config.rb", __FILE__)
 
-# Generate Contact Information Types
-%w[home_phone mobile_phone personal_email url github linkedin twitter instagram facebook].each do |t|
-	ContactType.create! name: t
+def seed_my_resume
+  user = User.new(handle: CONFIG[:MY_HANDLE], email: CONFIG[:MY_EMAIL],
+                  password: CONFIG[:MY_PASSWORD], password_confirmation: CONFIG[:MY_PASSWORD])
+
+  ContactType.all.each do |t|
+    setting = ('MY_' + t.name.upcase).to_sym
+    next if !CONFIG.has_key?(setting)
+    user.contact_informations << ContactInformation.new(contact_type: t, information: CONFIG[setting])
+  end
+  user.save!
+
+  cv = Cv.create!(user: user, title: CONFIG[:MY_CV_TITLE], target: CONFIG[:MY_CV_TARGET])
+
+  %w[objective summary skills experience education associations references].each do |h|
+    s = Section.create! header: h
+    cv.sections << s
+  end
+  cv.save!
 end
 
+puts "GENERATING SEED DATA:"
+
+print "admin user... "
 User.create!(handle: "admin", email: "roland.parnaso+resume.admin@gmail.com",
-             password: "adminadmin", password_confirmation: "adminadmin")
+             password: CONFIG[:ADMIN_PASSWORD], password_confirmation: CONFIG[:ADMIN_PASSWORD])
+puts "DONE\n"
+
+print "create my resume..."
+seed_my_resume
+puts "DONE\n"
+
+=begin
+print "subsections..."
+%w[skillset].each do |h|
+  Section.create! header: header
+end
+puts "DONE\n"
+
+print "items..."
+%w[bullet skill].each do |h|
+  Section.create! header: header
+end
+puts "DONE\n"
+=end

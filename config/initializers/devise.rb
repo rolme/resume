@@ -35,12 +35,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :handle ]
+  config.case_insensitive_keys = [ :login ]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :handle ]
+  config.strip_whitespace_keys = [ :login ]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "ec0dcb8315673eaf9c0d7561bd586c38c7f23ec2b91ab4d276e0333459b7507b368c56b261bb35c04e7faa0642cb5b0b43208d55e17b5def9e5bd7cdd24a2da3"
+  # config.pepper = "5773e49ab5c99a533e04c1f01c9ad79796f7b386acc142271eac258f875c8e906b907cf04d8695d0b98a39f6b74b8709a2fc5db65df5ef3ab9d1c3dce4bdbe8f"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -122,7 +122,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 8..128.
-  config.password_length = 8..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # an one (and only one) @ exists in the given string. This is mainly

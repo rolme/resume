@@ -11,20 +11,64 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325045858) do
+ActiveRecord::Schema.define(:version => 20130404190255) do
 
   create_table "contact_informations", :force => true do |t|
-    t.string   "information",     :limit => 64
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "contact_type_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_initial", :limit => 1
+    t.string   "home_phone"
+    t.string   "mobile_phone"
+    t.string   "contact_email"
+    t.string   "url"
+    t.string   "github"
+    t.string   "linkedin"
+    t.string   "twitter"
+    t.string   "instagram"
+    t.string   "facebook"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "user_id"
   end
 
-  create_table "contact_types", :force => true do |t|
-    t.string   "name",       :limit => 64
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+  create_table "cvs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "target"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
+
+  add_index "cvs", ["user_id"], :name => "index_cvs_on_user_id"
+
+  create_table "cvs_sections", :force => true do |t|
+    t.integer "cv_id"
+    t.integer "section_id"
+  end
+
+  add_index "cvs_sections", ["cv_id", "section_id"], :name => "index_cvs_sections_on_cv_id_and_section_id", :unique => true
+
+  create_table "experiences", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "title"
+    t.string   "department"
+    t.string   "company"
+    t.integer  "experienceable_id"
+    t.string   "experienceable_type"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "description"
+    t.integer  "section_id"
+    t.string   "type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "items", ["section_id"], :name => "index_items_on_section_id"
 
   create_table "people", :force => true do |t|
     t.string   "first_name", :limit => 64
@@ -33,6 +77,17 @@ ActiveRecord::Schema.define(:version => 20130325045858) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "sections", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "header"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "position"
+  end
+
+  add_index "sections", ["parent_id"], :name => "index_sections_on_section_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                :default => "", :null => false

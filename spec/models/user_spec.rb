@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe User do
   it "should have a valid factory" do
-  	Fabricate.build(:user).should be_valid
+    Fabricate.build(:user).should be_valid
+  end
+
+  it "should have a valid test user factory" do
+    Fabricate.build(:test_user).should be_valid
   end
 
   it "should fail on blank email address" do
@@ -40,7 +44,7 @@ describe User do
   end
 
   it "should fail on password too short" do
-    p = '1234123'
+    p = '12345'
     Fabricate.build(:user, password: p, password_confirmation: p).should_not be_valid
   end
 

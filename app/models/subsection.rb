@@ -1,0 +1,2 @@
+class Subsection < Section
+end

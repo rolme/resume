@@ -1,7 +1,12 @@
--if user_signed_in?
-  = current_user.email
+-if user_signed_in? && !current_user.blank?
+  Welcome #{current_user.handle}
   %a.btn{:href => signout_path}
-    = t(:signout)
+    = t(:signout).capitalize
+-elsif current_page?('/signin') || current_page?('/users/sign_in')  || !params[:password].blank?
+  %a.btn{:href => signup_path, :style => "margin-top: 5px"}
+    = t(:signup).capitalize
+    %i.icon-check
+-elsif current_page?('/signup')
 -else
   = simple_form_for(:user, 
                   :url => session_path("user"), 

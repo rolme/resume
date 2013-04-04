@@ -1,6 +1,6 @@
 class ContactInformation < ActiveRecord::Base
-  belongs_to :contact_type
-  attr_accessible :information, :contact_type
+  belongs_to :user
+  attr_accessible :contact_email, :facebook, :first_name, :github, :home_phone, :instagram, :last_name, :linkedin, :middle_initial, :mobile_phone, :twitter, :url, :user
 
-  validates :contact_type, :presence => true
+  validates :user, :presence => true
 end

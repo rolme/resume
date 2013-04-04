@@ -2,4 +2,9 @@
   = t(:name).capitalize
   
 .span3
-  hi
+  - if user_signed_in?
+    != ap current_user
+  - else
+    != ap @user_session
+
+  
