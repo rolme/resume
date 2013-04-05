@@ -1,0 +1,3 @@
+class Skillset < Section
+end
+

@@ -22,6 +22,13 @@ def seed_my_resume
     cv.sections << s
   end
   cv.save!
+
+  skill_section = Section.find_by_header('skills')
+  SkillsetFactory.build(config: CONFIG).each do |ss|
+    ss.parent = skill_section
+    ss.save!
+  end
+
 end
 
 puts "GENERATING SEED DATA:"

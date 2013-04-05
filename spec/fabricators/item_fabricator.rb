@@ -1,5 +1,4 @@
 Fabricator(:item) do
-  description "MyString"
-  section     nil
-  type        ""
+  description { Faker::Lorem.sentence }
+  section     
 end

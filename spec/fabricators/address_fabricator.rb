@@ -4,7 +4,7 @@ Fabricator(:address) do
   street2 { Faker::Address.street_address }
   city    { Faker::Address.city }
   state   { Faker::Address.state_abbr }
-  zip     { Faker::Address.zip_code }
+  zip     { Faker::Address.zip_code[0..4] }
   county  { Faker::Address.city }
   user
 end

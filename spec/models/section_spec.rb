@@ -15,7 +15,7 @@ describe Section do
     expect(Section.find_by_header("sub1").parent).to eq(main)
   end
 
-  it "should be able to find its as a sub-section" do
+  it "should be able to find its sub-section" do
     main = Fabricate(:section, header: "main")
     Fabricate(:section, header: "sub1", parent: main)
     Fabricate(:section, header: "sub2", parent: main)
