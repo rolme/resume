@@ -1,7 +1,7 @@
 class CvsController < ApplicationController
 
   def show
-    @user = User.find(1, :include => :contact_informations)
+    @user = User.find(2, :include => :contact_information)
     @cv = Cv.find(params[:id], :include => :sections)
 
     respond_to do |format|

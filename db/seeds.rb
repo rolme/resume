@@ -11,11 +11,7 @@ def seed_my_resume
   user = User.new(handle: CONFIG[:MY_HANDLE], email: CONFIG[:MY_EMAIL],
                   password: CONFIG[:MY_PASSWORD], password_confirmation: CONFIG[:MY_PASSWORD])
 
-  ContactType.all.each do |t|
-    setting = ('MY_' + t.name.upcase).to_sym
-    next if !CONFIG.has_key?(setting)
-    user.contact_informations << ContactInformation.new(contact_type: t, information: CONFIG[setting])
-  end
+  user.contact_information = ContactInformationFactory.build(config: CONFIG)
   user.save!
 
   cv = Cv.create!(user: user, title: CONFIG[:MY_CV_TITLE], target: CONFIG[:MY_CV_TARGET])

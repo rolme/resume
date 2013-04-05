@@ -1,4 +1,4 @@
-%h1 Resume
+%h1 #{@user.first_name.capitalize} #{@user.last_name.capitalize}
 
 -@cv.sections.each do |s|
   %h3 #{s.header.capitalize}

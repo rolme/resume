@@ -1,5 +1,8 @@
-class User < ActiveRecord::Base  
-  has_many :contact_informations
+class User < ActiveRecord::Base
+  has_one :contact_information
+
+  delegate :first_name, :last_name, :middle_initial, :home_phone, :mobile_phone,
+           :contact_email, :url, :github, :twitter, :instagram, :facebook, :to => :contact_information
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
