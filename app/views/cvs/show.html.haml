@@ -24,6 +24,9 @@
 
 -@cv.sections.each do |s|
   %h3 #{s.header.capitalize}
+  -if s.header == 'objective'
+    = s.items[0].description
+
   -if s.header == 'skills'
     %dl{class: "dl-horizontal"}
       -s.subsections.reverse.each do |ss|

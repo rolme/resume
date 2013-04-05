@@ -13,6 +13,12 @@ describe 'Loading CV' do
     end
   end
 
+  describe "OBJECTIVE" do
+    it "gets data from CONFIG[:OBJECTIVE]" do
+      expect(Item.new(description: CONFIG[:OBJECTIVE]).description).to match(/position/)
+    end
+  end
+
   describe 'SKILLSET' do
     it 'gets data from CONFIG[:SKILLSET]' do
       expect(SkillsetFactory.build(config: CONFIG)[0].header).to eql "languages"
