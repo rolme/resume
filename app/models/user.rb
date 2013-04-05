@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   has_one :contact_information
+  has_one :address
 
-  delegate :first_name, :last_name, :middle_initial, :home_phone, :mobile_phone,
+  delegate :first_name, :last_name, :middle_initial, :home_phone, :mobile_phone, :linkedin,
            :contact_email, :url, :github, :twitter, :instagram, :facebook, :to => :contact_information
+
+  delegate :street1, :street2, :city, :state, :zip, :to => :address
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -19,10 +22,6 @@ class User < ActiveRecord::Base
                      :length => { :minimum => 3 },
                      :format => { :with => /\A[a-zA-Z0-9_-]+\z/,
                                   :message => "Alphanumeric, underscore, and dash characters only" }
-
-  def contact_information_for(args)
-    self.contact_informations
-  end
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

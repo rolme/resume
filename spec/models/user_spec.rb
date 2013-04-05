@@ -60,4 +60,11 @@ describe User do
     user.save!
     expect(user.first_name).to eql 'test'
   end
+
+  it "delegates :city to :address" do
+    user = Fabricate(:user)
+    Fabricate(:address, user: user, street1: 'test')
+    user.save!
+    expect(user.street1).to eql 'test'
+  end
 end

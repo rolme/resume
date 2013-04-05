@@ -12,6 +12,7 @@ def seed_my_resume
                   password: CONFIG[:MY_PASSWORD], password_confirmation: CONFIG[:MY_PASSWORD])
 
   user.contact_information = ContactInformationFactory.build(config: CONFIG)
+  user.address = AddressFactory.build(config: CONFIG)
   user.save!
 
   cv = Cv.create!(user: user, title: CONFIG[:MY_CV_TITLE], target: CONFIG[:MY_CV_TARGET])
