@@ -1,28 +1,26 @@
 %h1 #{@user.first_name.capitalize} #{@user.middle_initial.capitalize}. #{@user.last_name.capitalize}
 
 %address{id: @user.address.name }
-  %span#city
-    #{@user.city}
-  ,
+  = succeed ',' do
+    %span#city #{@user.city}
   %span#state #{@user.state}
-  %br
   %ul{class: "inline"}
-    contact information: 
+    %strong contact information: 
     %li
-      #email
+      %span#email
         =link_to "email", "mailto:#{@user.contact_email}"
     %li
-      #linkedin
+      %span#linkedin
         =link_to "linkedin", "http://www.linkedin.com/in/#{@user.linkedin}"
     %li
-      #github
+      %span#github
         =link_to "github", "http://www.github.com/#{@user.github}"
     %li
-      #twitter
+      %span#twitter
         =link_to "twitter", "http://www.twitter.com/#{@user.twitter}"
     %li 
-      #website
-        =link_to 'url', "#{@user.url}"
+      %span#website
+        =link_to 'url', "http://#{@user.url}"
 
 -@cv.sections.each do |s|
   %h3 #{s.header.capitalize}
@@ -31,5 +29,5 @@
       -s.subsections.reverse.each do |ss|
         %dt #{ss.header}
         %dd
-          -ss.items.each do |i|
+          -ss.items.reverse.each do |i|
             %span{id: i.id, class: 'skill'} #{i.description}
