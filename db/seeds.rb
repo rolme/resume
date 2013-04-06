@@ -29,10 +29,10 @@ def seed_my_resume
     ss.save!
   end
 
-  s = cv.sections.select {|s| s.header == 'objective'}.first
+  s = cv.sections.select{|s| s.header == 'objective'}.first
   Item.create!(description: CONFIG[:OBJECTIVE], section: s)
 
-  s = cv.sections.select {|s| s.header == 'education'}.first
+  s = cv.sections.select{|s| s.header == 'education'}.first
   Item.create!(description: CONFIG[:EDUCATION], section: s)
 end
 
