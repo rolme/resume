@@ -34,3 +34,6 @@
         %dd
           -ss.items.reverse.each do |i|
             %span{id: i.id, class: 'skill'} #{i.description}
+
+  -if s.header == 'education'
+    = s.items[0].description

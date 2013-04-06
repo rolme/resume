@@ -17,7 +17,7 @@ def seed_my_resume
 
   cv = Cv.create!(user: user, title: CONFIG[:MY_CV_TITLE], target: CONFIG[:MY_CV_TARGET])
 
-  %w[objective skills summary experience associations education references].each do |h|
+  %w[objective skills experience associations education].each do |h|
     s = Section.create! header: h
     cv.sections << s
   end
@@ -31,6 +31,9 @@ def seed_my_resume
 
   s = cv.sections.select {|s| s.header == 'objective'}.first
   Item.create!(description: CONFIG[:OBJECTIVE], section: s)
+
+  s = cv.sections.select {|s| s.header == 'education'}.first
+  Item.create!(description: CONFIG[:EDUCATION], section: s)
 end
 
 puts "GENERATING SEED DATA:"

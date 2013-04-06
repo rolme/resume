@@ -19,13 +19,19 @@ describe 'Loading CV' do
     end
   end
 
+  describe "EDUCATION" do
+    it "gets data from CONFIG[:EDUCATION]" do
+      expect(Item.new(description: CONFIG[:EDUCATION]).description).to match(/studied/i)
+    end
+  end
+
   describe 'SKILLSET' do
     it 'gets data from CONFIG[:SKILLSET]' do
       expect(SkillsetFactory.build(config: CONFIG)[0].header).to eql "languages"
     end
 
     it 'gets skills from CONFIG[:SKILLSET][:KEY]' do
-      expect(SkillsetFactory.build(config: CONFIG)[0].items[1].description).to eql "Ruby on Rails"
+      expect(SkillsetFactory.build(config: CONFIG)[0].items[0].description).to eql "Ruby"
     end
   end
 end
