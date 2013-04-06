@@ -23,11 +23,12 @@
         =link_to 'url', "http://#{@user.url}"
 
 -@cv.sections.each do |s|
-  %h3 #{s.header.capitalize}
   -if s.header == 'objective'
+    %h3 #{s.header.capitalize}
     = s.items[0].description
 
   -if s.header == 'skills'
+    %h3 #{s.header.capitalize}
     %dl{class: "dl-horizontal"}
       -s.subsections.reverse.each do |ss|
         %dt #{ss.header}
@@ -36,6 +37,7 @@
             %span{id: i.id, class: 'skill'} #{i.description}
 
   -if s.header == 'experience'
+    %h3 #{s.header.capitalize}
     -s.subsections.reverse.each do |es|
       %h5 #{es.title} - #{es.department}, #{es.company} #{es.start_date} - #{es.end_date}
       %ul
@@ -43,4 +45,5 @@
           %li #{i.description}
 
   -if s.header == 'education'
+    %h3 #{s.header.capitalize}
     = s.items[0].description

@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe SkillsetFactory do
   describe '#build' do
-    let(:my_config) { {:SKILLSET => { :LANGUAGES =>  ['Ruby', 'Ruby on Rails', 'PHP', 'Perl'] } } }
+    let(:my_config) { { :LANGUAGES =>  ['Ruby', 'Ruby on Rails', 'PHP', 'Perl'] } }
 
     it 'gets data from CONFIG[:SKILLSET]' do
       expect(SkillsetFactory.build(config: my_config)[0].header).to match(/languages/)

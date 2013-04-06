@@ -6,9 +6,9 @@ class SkillsetFactory
 
   def self.build_skillsets_from_config config
     skillsets = []
-    config[:SKILLSET].keys.each do |k|
+    config.keys.each do |k|
       ss = build_skillset(header: k.to_s.downcase)
-      config[:SKILLSET][k].each do |i|
+      config[k].each do |i|
         ss.items << Item.new(description: i)
       end
       skillsets << ss

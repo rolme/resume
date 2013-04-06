@@ -10,6 +10,7 @@
 # Ignore database.yml file
 config/database.yml
 config/application.yml
+data/cv.yml
 
 # Ignore vagrant files
 .vagrant
@@ -20,9 +21,10 @@ package.box
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
-# Ignore all logfiles and tempfiles.
+# Ignore all data, logfiles and tempfiles.
 /log/*.log
 /tmp
+/data
 
 *.rbc
 *.sassc

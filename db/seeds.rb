@@ -8,38 +8,44 @@
 require File.expand_path("../../config/config.rb", __FILE__)
 
 def seed_my_resume
+  puts "adding user"
   user = User.new(handle: CONFIG[:MY_HANDLE], email: CONFIG[:MY_EMAIL],
                   password: CONFIG[:MY_PASSWORD], password_confirmation: CONFIG[:MY_PASSWORD])
-
-  user.contact_information = ContactInformationFactory.build(config: CONFIG)
-  user.address = AddressFactory.build(config: CONFIG)
+  CV[:SECTIONS].symbolize_keys!
+  user.contact_information = ContactInformationFactory.build(config: CV[:SECTIONS][:CONTACT_INFORMATION])
+  user.address = AddressFactory.build(config:  CV[:SECTIONS][:ADDRESS])
   user.save!
 
-  cv = Cv.create!(user: user, title: CONFIG[:MY_CV_TITLE], target: CONFIG[:MY_CV_TARGET])
+  cv = Cv.create!(user: user, title: CV[:TITLE], target: CV[:TARGET])
 
-  %w[objective skills experience associations education].each do |h|
-    s = Section.create! header: h
+  CV[:SECTIONS].keys.each do |h|
+    puts "adding section: #{h}"
+    s = Section.create! header: h.downcase
     cv.sections << s
   end
   cv.save!
 
+  puts "adding skillsets"
   skill_section = cv.sections.select{|s| s.header == 'skills'}.first
-  SkillsetFactory.build(config: CONFIG).each do |ss|
+  SkillsetFactory.build(config: CV[:SECTIONS][:SKILLS]).each do |ss|
     ss.parent = skill_section
     ss.save!
   end
 
+  puts "adding experiences"
   experience_section = cv.sections.select{|s| s.header == 'experience'}.first
-  ExperienceSectionFactory.build(config: CONFIG).each do |es|
+  ExperienceSectionFactory.build(config: CV[:SECTIONS][:EXPERIENCE]).each do |es|
     es.parent = experience_section
     es.save!
   end
 
+  puts "adding objective text"
   s = cv.sections.select{|s| s.header == 'objective'}.first
-  Item.create!(description: CONFIG[:OBJECTIVE], section: s)
+  Item.create!(description: CV[:SECTIONS][:OBJECTIVE], section: s)
 
+  puts "adding education text"
   s = cv.sections.select{|s| s.header == 'education'}.first
-  Item.create!(description: CONFIG[:EDUCATION], section: s)
+  Item.create!(description: CV[:SECTIONS][:EDUCATION], section: s)
 
 end
 
@@ -50,20 +56,6 @@ User.create!(handle: "admin", email: "roland.parnaso+resume.admin@gmail.com",
              password: CONFIG[:ADMIN_PASSWORD], password_confirmation: CONFIG[:ADMIN_PASSWORD])
 puts "DONE\n"
 
-print "create my resume..."
+puts "create my resume..."
 seed_my_resume
 puts "DONE\n"
-
-=begin
-print "subsections..."
-%w[skillset].each do |h|
-  Section.create! header: header
-end
-puts "DONE\n"
-
-print "items..."
-%w[bullet skill].each do |h|
-  Section.create! header: header
-end
-puts "DONE\n"
-=end

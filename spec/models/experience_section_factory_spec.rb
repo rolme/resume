@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe ExperienceSectionFactory do
-  my_config = { :EXPERIENCE => [
-      { :TITLE => 'test1' },
-      { :TITLE => 'test2', :DEPARTMENT => 'department2' },
-      { :TITLE => 'test3' }
-    ] 
-  }
+  my_config = [ { :TITLE => 'test1' }, { :TITLE => 'test2', :DEPARTMENT => 'department2' }, { :TITLE => 'test3' } ]
 
   it 'returns a valid experience section' do
     expect(ExperienceSectionFactory.build(config: my_config)[1].department).to eql 'department2'
