@@ -5,9 +5,9 @@ describe Section do
     Fabricate.build(:section).should be_valid
   end
 
-  it "should fail without a header" do
-    Fabricate.build(:section, header: nil).should_not be_valid
-  end
+  # it "should fail without a header" do
+  #   Fabricate.build(:section, header: nil).should_not be_valid
+  # end
 
   it "should be able to have a parent section" do
     main = Fabricate(:section, header: "main")

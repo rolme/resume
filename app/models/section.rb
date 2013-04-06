@@ -4,9 +4,6 @@ class Section < ActiveRecord::Base
   has_and_belongs_to_many :cvs
   attr_accessible :header, :type, :parent
 
-  validates :header, :presence => true,
-                     :length => { :minimum => 3 }
-
   def subsections
     Section.where('parent_id = ?', self.id)
   end

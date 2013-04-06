@@ -8,6 +8,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+# Line below adds CONFIG constants typically loaded from application.yml
 require File.expand_path("../config.rb", __FILE__)
 
 module Resume

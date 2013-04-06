@@ -23,10 +23,16 @@ def seed_my_resume
   end
   cv.save!
 
-  skill_section = Section.find_by_header('skills')
+  skill_section = cv.sections.select{|s| s.header == 'skills'}.first
   SkillsetFactory.build(config: CONFIG).each do |ss|
     ss.parent = skill_section
     ss.save!
+  end
+
+  experience_section = cv.sections.select{|s| s.header == 'experience'}.first
+  ExperienceSectionFactory.build(config: CONFIG).each do |es|
+    es.parent = experience_section
+    es.save!
   end
 
   s = cv.sections.select{|s| s.header == 'objective'}.first
@@ -34,6 +40,7 @@ def seed_my_resume
 
   s = cv.sections.select{|s| s.header == 'education'}.first
   Item.create!(description: CONFIG[:EDUCATION], section: s)
+
 end
 
 puts "GENERATING SEED DATA:"

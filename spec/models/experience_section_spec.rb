@@ -6,7 +6,7 @@ describe ExperienceSection do
   end
 
   it 'delegates messages to experience' do
-    es = Fabricate.build(:experience_section, experience: Fabricate.build(:experience, company: 'test'))
-    expect(es.company).to eq 'test'
+    es = Fabricate.build(:experience_section, experience: Fabricate.build(:experience, :title => 'test'))
+    expect(es.title).to eq 'test'
   end
 end

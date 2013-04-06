@@ -35,5 +35,9 @@
           -ss.items.reverse.each do |i|
             %span{id: i.id, class: 'skill'} #{i.description}
 
+  -if s.header == 'experience'
+    -s.subsections.reverse.each do |es|
+      %h5 #{es.title} - #{es.department}, #{es.company} #{es.start_date} - #{es.end_date}
+
   -if s.header == 'education'
     = s.items[0].description
