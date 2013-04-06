@@ -1,0 +1,40 @@
+CONTACT_INFORMATION:
+  FIRST_NAME: 'First'
+  LAST_NAME: 'Last'
+  MIDDLE_INITIAL: 'M'
+  CONTACT_EMAIL: 'your@email.com'
+  GITHUB: 'git'
+  LINKEDIN: 'linkedin'
+  TWITTER: 'twitter'
+  URL: 'www.url.com'
+ADDRESS:
+  NAME: 'home|PO Box|work'
+  STREET1: 'street1'
+  STREET2: ''
+  CITY: 'city'
+  STATE: 'ST'
+  ZIP: '12345'
+OBJECTIVE: 'Whatever your objective is'
+EDUCATION: ''
+SKILLSET:
+  WHATEVER:
+    - ''
+    - ''
+    - ''
+EXPERIENCE:
+  - TITLE: 'Title'
+    DEPARTMENT: 'department'
+    COMPANY: 'Company'
+    START_DATE: 2011-02-24
+    END_DATE: 2013-03-15
+    ITEMS:
+      - 'item1'
+      - 'item2'
+      - 'item3'
+  - TITLE: 'Title'
+    DEPARTMENT: 'department'
+    COMPANY: 'Company 2'
+    START_DATE: 2007-03-07
+    END_DATE: 2011-02-17
+    ITEMS:
+      - ''

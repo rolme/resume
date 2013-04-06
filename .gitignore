@@ -24,7 +24,6 @@ package.box
 # Ignore all data, logfiles and tempfiles.
 /log/*.log
 /tmp
-/data
 
 *.rbc
 *.sassc
