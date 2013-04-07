@@ -44,6 +44,12 @@
         -es.items.reverse.each do |i|
           %li #{i.description}
 
+  -if s.header == 'associations'
+    %h3 #{s.header.capitalize}
+    %ul
+    - s.items.each do |i|
+      %li #{i.description}
+
   -if s.header == 'education'
     %h3 #{s.header.capitalize}
     = s.items[0].description

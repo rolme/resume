@@ -43,6 +43,12 @@ def seed_my_resume
   s = cv.sections.select{|s| s.header == 'objective'}.first
   Item.create!(description: CV[:SECTIONS][:OBJECTIVE], section: s)
 
+  puts "adding association items"
+  s = cv.sections.select{|s| s.header == 'associations'}.first
+  CV[:SECTIONS][:ASSOCIATIONS].each do |d|
+    Item.create!(description: d, section: s)
+  end
+
   puts "adding education text"
   s = cv.sections.select{|s| s.header == 'education'}.first
   Item.create!(description: CV[:SECTIONS][:EDUCATION], section: s)
