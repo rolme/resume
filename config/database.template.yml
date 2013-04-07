@@ -43,8 +43,8 @@ test:
   encoding: unicode
   database: resume_test
   pool: 5
-  username: resume
-  password: resume
+  username: postgres
+  password: 
 
 production:
   adapter: postgresql
