@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.0.0
+before_script:
+  - "psql -c 'create database resume_test;' -U postgres"
+  - "bundle exec rake db:migrate db:test:prepare"
+script: "bundle exec rake spec"
+notifications:
+  email:
+    - roland.parnaso@gmail.com
+    - roland.parnaso+resume-travis-build@gmail.com
