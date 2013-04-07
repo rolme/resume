@@ -9,25 +9,25 @@ describe 'Loading CV' do
 
   describe 'CONACT INFORMATION' do
     it 'gets data from CV[:SECTIONS][:CONTACT_INFORMATION]' do
-      expect(ContactInformationFactory.build(config: sections[:CONTACT_INFORMATION]).first_name).to eql 'Roland'
+      expect(ContactInformationFactory.build(config: sections[:CONTACT_INFORMATION]).first_name).to eql 'First'
     end
   end
 
   describe 'ADDRESS' do
     it 'gets data from CV[:SECTIONS][:ADDRESS]' do
-      expect(AddressFactory.build(config: sections[:ADDRESS]).city).to eql 'San Jose'
+      expect(AddressFactory.build(config: sections[:ADDRESS]).city).to eql 'My City'
     end
   end
 
   describe "OBJECTIVE" do
     it "gets data from CV[:SECTIONS][:OBJECTIVE]" do
-      expect(Item.new(description: sections[:OBJECTIVE]).description).to match(/position/)
+      expect(Item.new(description: sections[:OBJECTIVE]).description).to match(/objective/)
     end
   end
 
   describe "EDUCATION" do
     it "gets data from CV[:SECTIONS][:EDUCATION]" do
-      expect(Item.new(description: sections[:EDUCATION]).description).to match(/studied/i)
+      expect(Item.new(description: sections[:EDUCATION]).description).to match(/university/i)
     end
   end
 

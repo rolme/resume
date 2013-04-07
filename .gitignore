@@ -25,6 +25,9 @@ package.box
 /log/*.log
 /tmp
 
+*.back
+*.bak
+*.orig
 *.swp
 *.rbc
 *.sassc
