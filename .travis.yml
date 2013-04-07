@@ -1,7 +1,9 @@
 language: ruby
+bundler_args: --without development
 rvm:
   - 2.0.0
 before_script:
+  - 'cp config/database.template.yml config/database.yml'
   - "psql -c 'create database resume_test;' -U postgres"
   - "bundle exec rake db:migrate db:test:prepare"
 script: "bundle exec rake spec"
