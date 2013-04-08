@@ -18,7 +18,7 @@ end
 
 def create_user
   delete_user
-  @user = Fabricate(:test_user)
+  @user = Fabricate(:test_user, contact_information: Fabricate.build(:contact_information))
 end
 
 def sign_up

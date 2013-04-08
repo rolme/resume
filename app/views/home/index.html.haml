@@ -1,5 +1,65 @@
-- content_for :title do
-  = t(:name).capitalize
-  
-.span3
-  Something
+- @user = User.exists?(2) ? User.find(2, :include => :contact_information) : nil
+- @cv = Cv.exists?(1) ? Cv.find(1, :include => :sections) : nil
+
+- if !@user.nil? && !@cv.nil?
+  %h1 #{@user.first_name.capitalize} #{@user.middle_initial.capitalize}. #{@user.last_name.capitalize}
+
+  %address{id: @user.address.name }
+    = succeed ',' do
+      %span#city #{@user.city}
+    %span#state #{@user.state}
+    %ul{class: "inline"}
+      %strong contact information: 
+      %li
+        %span#email
+          =link_to "email", "mailto:#{@user.contact_email}"
+      %li
+        %span#linkedin
+          =link_to "linkedin", "http://www.linkedin.com/in/#{@user.linkedin}"
+      %li
+        %span#github
+          =link_to "github", "http://www.github.com/#{@user.github}"
+      %li
+        %span#twitter
+          =link_to "twitter", "http://www.twitter.com/#{@user.twitter}"
+      %li 
+        %span#website
+          =link_to 'url', "http://#{@user.url}"
+
+  -@cv.sections.each do |s|
+    -if s.header == 'objective'
+      %h4.section-header #{s.header.capitalize}
+      %p= s.items[0].description
+
+    -if s.header == 'skills'
+      %h4.section-header #{s.header.capitalize}
+      %dl{class: "dl-horizontal"}
+        -s.subsections.reverse.each do |ss|
+          %dt.skillset #{ss.header}
+          %dd.skillset
+            -ss.items.reverse.each do |i|
+              %span{id: i.id, class: 'skill'} #{i.description}
+
+    -if s.header == 'experience'
+      %h4.section-header #{s.header.capitalize}
+      -s.subsections.reverse.each do |es|
+        .row
+          .span8 
+            #{es.title} - 
+            %em #{es.department}, #{es.company} 
+          .span3.pull-right.timeframe #{es.start_date.to_time.strftime('%b %Y')} to #{es.end_date.to_time.strftime('%b %Y')}
+        .row  
+          .span11          
+            %ul
+              -es.items.reverse.each do |i|
+                %li #{i.description}
+
+    -if s.header == 'associations'
+      %h4.section-header #{s.header.capitalize}
+      %ul
+      - s.items.each do |i|
+        %li #{i.description}
+
+    -if s.header == 'education'
+      %h4.section-header #{s.header.capitalize}
+      = s.items[0].description
