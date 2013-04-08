@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe 'Loading CV' do
   data_path = File.expand_path('./data')
-  data_file = File.exists?(File.join(data_path, 'cv.yml')) ? 'cv.yml' : 'cv.template.yml'
-  cv = YAML.load(File.read(File.expand_path(File.join(data_path, data_file), __FILE__)))
+  cv = YAML.load(File.read(File.expand_path(File.join(data_path, 'cv.template.yml'), __FILE__)))
   cv.symbolize_keys!
   sections = cv[:SECTIONS].symbolize_keys!
 
