@@ -45,3 +45,5 @@ group :assets do
   gem 'uglifier'
 end
 
+ruby "2.0.0"
+
