@@ -1,7 +1,11 @@
 class ExperienceSectionFactory
 
   def self.build args
-    es = args.has_key?(:config) ? build_experience_sections_from_config(args[:config]) : ExperienceSection.new
+    if args.has_key?(:config)
+      return build_experience_sections_from_config(args[:config])
+    end
+
+    ExperienceSection.new
   end
 
   def self.build_experience_sections_from_config config

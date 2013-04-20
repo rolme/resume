@@ -1,7 +1,9 @@
 class SkillsetFactory
 
   def self.build args
-    s = args.has_key?(:config) ? build_skillsets_from_config(args[:config]) : Skillset.new
+    return build_skillsets_from_config(args[:config]) if args.has_key?(:config)
+
+    Skillset.new
   end
 
   def self.build_skillsets_from_config config

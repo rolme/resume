@@ -4,10 +4,12 @@ class Cv < ActiveRecord::Base
 
   attr_accessible :target, :title, :user
 
-  validates :user, :presence => true
-  validates :title, :presence => true,
-                    :uniqueness => true,
-                    :length => { :minimum => 3 }
-  validates :target, :presence => true,
-                     :length => { :minimum => 3 }
+  validates :user, presence: true
+
+  validates :title, presence: true,
+                    uniqueness: true,
+                    length: { minimum: 3 }
+
+  validates :target, presence: true,
+                     length: { minimum: 3 }
 end
