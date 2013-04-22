@@ -60,7 +60,10 @@ module Resume
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
+    # For resolving Heroku precompile conflicts
+    config.assets.initialize_on_precompile = false
+
     # modify generators
     config.generators do |g|
       g.test_framework      :rspec, fixture: true
