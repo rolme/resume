@@ -8,7 +8,7 @@ CONFIG.symbolize_keys!
 if Rails.env["FILE_DEPOT"].blank?
   data_path = File.expand_path('./data')
 else
-  data_path = "#{ENV[:FILE_DEPOT]}data"
+  data_path = "#{ENV[:FILE_DEPOT]}/data"
 end
 
 data_file = File.exists?(File.join(data_path, 'cv.yml')) ? 'cv.yml' : 'cv.template.yml'

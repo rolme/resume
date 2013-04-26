@@ -1,2 +1,4 @@
 TRUSTED_IP: 10.0.2.2
 MAILER_HOST: 'localhost:3000'
+ADMIN_EMAIL: resume.admin@gmail.com
+ADMIN_PASSWORD: 123123
