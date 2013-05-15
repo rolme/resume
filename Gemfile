@@ -9,9 +9,6 @@ gem 'jquery-rails'
 gem 'simple_form'
 
 group :development do
-  gem 'omglog'
-  gem "pry"
-  gem "awesome_print"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
@@ -24,10 +21,10 @@ group :development do
 end
 
 group :development, :test do
+  gem "pry-debugger"
+  gem "pry-rails"
   gem 'rspec-rails'
-  gem 'jasmine'
   gem 'faker'
-  gem 'launchy'
   gem 'fabrication'
 end
 
@@ -35,6 +32,7 @@ group :test do
   gem 'capybara'
   gem "database_cleaner"
   gem 'cucumber-rails', :require => false
+  gem 'poltergeist'
 end
 
 group :assets do
@@ -46,4 +44,3 @@ group :assets do
 end
 
 ruby "2.0.0"
-
