@@ -5,6 +5,7 @@ gem 'pg'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
+gem 'haml'
 gem 'simple_form'
 
 group :development do
