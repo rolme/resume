@@ -6,7 +6,6 @@ gem 'devise'
 gem 'cancan'
 gem 'therubyracer', :platforms => :ruby
 gem 'jquery-rails'
-gem 'haml'
 gem 'simple_form'
 
 group :development do
