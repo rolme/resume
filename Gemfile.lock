@@ -247,6 +247,7 @@ DEPENDENCIES
   guard-cucumber
   guard-livereload
   guard-rspec
+  haml
   haml-rails
   jquery-rails
   meta_request
