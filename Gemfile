@@ -4,7 +4,6 @@ gem 'rails', '3.2.12'
 gem 'pg'
 gem 'devise'
 gem 'cancan'
-gem 'therubyracer', :platforms => :ruby
 gem 'jquery-rails'
 gem 'simple_form'
 
