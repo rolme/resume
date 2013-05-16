@@ -34,10 +34,10 @@
     -if s.header == 'skills'
       %h4.section-header #{s.header.upcase}
       %dl{class: "dl-horizontal"}
-        -s.subsections.reverse.each do |ss|
+        -s.subsections.sort{|a,b| a.position <=> b.position}.each do |ss|
           %dt.skillset #{ss.header}
           %dd.skillset
-            -ss.items.reverse.each do |i|
+            -ss.items.sort{|a,b| a.position <=> b.position}.each do |i|
               %span{id: i.id, class: 'skill'} #{i.description}
 
     -if s.header == 'experience'
