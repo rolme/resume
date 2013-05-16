@@ -42,7 +42,7 @@
 
     -if s.header == 'experience'
       %h4.section-header #{s.header.upcase}
-      -s.subsections.reverse.each do |es|
+      -s.subsections.sort{|a,b| b.end_date <=> a.end_date}.each do |es|
         .row
           .span8
             .work-experience
