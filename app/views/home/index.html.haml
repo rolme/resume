@@ -33,12 +33,13 @@
 
     -if s.header == 'skills'
       %h4.section-header #{s.header.upcase}
-      %dl{class: "dl-horizontal"}
+      %dl{class: "dl-horizontal", id: 'skillsets', data: {'update-position' => sort_skillsets_path} }
         -s.subsections.sort{|a,b| a.position <=> b.position}.each do |ss|
-          %dt.skillset #{ss.header}
-          %dd.skillset
-            -ss.items.sort{|a,b| a.position <=> b.position}.each do |i|
-              %span{id: i.id, class: 'skill'} #{i.description}
+          %div{id: [ss.class.name.downcase, ss.id]}
+            %dt.skillset #{ss.header}
+            %dd.skillset
+              -ss.items.sort{|a,b| a.position <=> b.position}.each do |i|
+                %span{id: i.id, class: 'skill'} #{i.description}
 
     -if s.header == 'experience'
       %h4.section-header #{s.header.upcase}
