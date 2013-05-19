@@ -18,11 +18,11 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-cucumber'
   gem 'guard-livereload'
+  gem "pry-debugger"
+  gem "pry-rails"
 end
 
 group :development, :test do
-  gem "pry-debugger"
-  gem "pry-rails"
   gem 'rspec-rails'
   gem 'faker'
   gem 'fabrication'
