@@ -24,6 +24,6 @@ Resume::Application.routes.draw do
     end
   end
 
-  root to: "home#index"
+  root to: "home#index", id: 2, cv_id: 1
 
 end

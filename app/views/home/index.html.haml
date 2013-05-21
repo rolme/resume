@@ -1,6 +1,3 @@
-- @user = User.exists?(2) ? User.find(2, :include => :contact_information) : nil
-- @cv = Cv.exists?(1) ? Cv.find(1, :include => :sections) : nil
-
 - if !@user.nil? && !@cv.nil?
   %h1 #{@user.first_name.capitalize} #{@user.middle_initial.capitalize}. #{@user.last_name.capitalize}
 
