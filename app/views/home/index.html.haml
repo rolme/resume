@@ -1,68 +1,69 @@
-- if !@user.nil? && !@cv.nil?
-  %h1 #{@user.first_name.capitalize} #{@user.middle_initial.capitalize}. #{@user.last_name.capitalize}
+%h1 #{@user.full_name.titleize}
 
-  %address{id: @user.address.name }
-    = succeed ',' do
-      %span#city #{@user.city}
-    %span#state #{@user.state}
-    %ul{class: "inline"}
-      %strong contact information: 
-      %li
-        %span#email
-          =link_to "email", "mailto:#{@user.contact_email}"
-      %li
-        %span#linkedin
-          =link_to "linkedin", "http://www.linkedin.com/in/#{@user.linkedin}"
-      %li
-        %span#github
-          =link_to "github", "http://www.github.com/#{@user.github}"
-      %li
-        %span#twitter
-          =link_to "twitter", "http://www.twitter.com/#{@user.twitter}"
-      %li 
-        %span#website
-          =link_to 'url', "http://#{@user.url}"
+%address{id: @user.address.id }
+  = succeed ',' do
+    %span#city #{@user.city}
+  %span#state #{@user.state}
+  %ul{class: "inline"}
+    %strong contact information:
+    %li
+      %span#email
+        =link_to "email", "mailto:#{@user.contact_email}"
+    %li
+      %span#linkedin
+        =link_to "linkedin", "http://www.linkedin.com/in/#{@user.linkedin}"
+    %li
+      %span#github
+        =link_to "github", "http://www.github.com/#{@user.github}"
+    %li
+      %span#twitter
+        =link_to "twitter", "http://www.twitter.com/#{@user.twitter}"
+    %li 
+      %span#website
+        =link_to 'url', "http://#{@user.url}"
 
-  -@cv.sections.each do |s|
-    -if s.header == 'objective'
-      %h4.section-header #{s.header.upcase}
-      %p= s.items[0].description
+-@cv.sections.each do |s|
+  -case s.header
+  -when 'objective'
+    %h4.section-header #{s.header.upcase}
+    %p= s.items[0].description
 
-    -if s.header == 'skills'
-      %h4.section-header #{s.header.upcase}
-      %dl{class: "dl-horizontal", id: 'skillsets', data: {'update-position' => sort_skillsets_path} }
-        -s.subsections.sort{|a,b| a.position <=> b.position}.each do |ss|
-          %div{id: [ss.class.name.downcase, ss.id]}
-            %dt.skillset #{ss.header}
-            %dd.skillset#skills
-              -ss.skills.sort{|a,b| a.position <=> b.position}.each do |i|
-                %span{id: "skill_#{i.id}", class: 'skill'} #{i.description}
+  -when 'skills'
+    %h4.section-header #{s.header.upcase}
+    %dl{class: "dl-horizontal", id: 'skillsets', data: {'update-position' => sort_skillsets_path} }
+      -s.subsections_ordered_by_position.each do |skillset|
+        %div{id: [skillset.class.name.downcase, skillset.id]}
+          %dt.skillset #{skillset.header}
+          %dd.skillset
+            %div{id: ['skills', skillset.id], data: {'update-position' => sort_skills_path} }
+              -skillset.skills_order_by_position.each do |i|
+                %span{id: ["skill", skillset.id, i.id], class: 'skill'} #{i.description}
 
-    -if s.header == 'experience'
-      %h4.section-header #{s.header.upcase}
-      -s.subsections.sort{|a,b| b.end_date <=> a.end_date}.each do |es|
-        .row
-          .span8
-            .work-experience
-              #{es.title} - 
-              %em 
-                - if !es.department.nil?
-                  #{es.department},
-                #{es.company} 
-          .span3.pull-right
-            .timeframe.work-experience #{es.start_date.to_time.strftime('%b %Y')} to #{es.end_date.to_time.strftime('%b %Y')}
-        .row  
-          .span11          
-            %ul
-              -es.items.each do |i|
-                %li #{i.description}
+  -when 'experience'
+    %h4.section-header #{s.header.upcase}
+    -s.subsections.sort{|a,b| b.end_date <=> a.end_date}.each do |es|
+      .row
+        .span8
+          .work-experience
+            #{es.title} -
+            %em
+              - if !es.department.nil?
+                #{es.department},
+              #{es.company}
+        .span3.pull-right
+          .timeframe.work-experience #{es.start_date.to_time.strftime('%b %Y')} to #{es.end_date.to_time.strftime('%b %Y')}
+      .row
+        .span11
+          %ul
+            -es.items.each do |i|
+              %li #{i.description}
 
-    -if s.header == 'associations'
-      %h4.section-header #{s.header.upcase}
-      %ul
-      - s.items.each do |i|
-        %li #{i.description}
+  -when 'associations'
+    %h4.section-header #{s.header.upcase}
+    %ul
+    - s.items.each do |i|
+      %li #{i.description}
 
-    -if s.header == 'education'
-      %h4.section-header #{s.header.upcase}
-      = s.items[0].description
+  -when 'education'
+    %h4.section-header #{s.header.upcase}
+    = s.items[0].description
