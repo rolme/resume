@@ -18,12 +18,6 @@ Resume::Application.routes.draw do
     end
   end
 
-  resources :skills, only: [] do 
-    collection do
-      post :sort
-    end
-  end
-
   root to: "home#index", id: 2, cv_id: 1
 
 end
