@@ -63,4 +63,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Public: Get the full name.
+  #
+  # Returns a String.
+  def full_name
+    [first_name, middle_initial, last_name].join(' ')
+  end
 end

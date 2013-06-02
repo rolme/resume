@@ -2,21 +2,3 @@
   Welcome #{current_user.handle}
   %a.btn{:href => signout_path}
     = t(:signout).capitalize
--elsif current_page?('/signin') || current_page?('/users/sign_in')  || !params[:password].blank?
-  %a.btn{:href => signup_path, :style => "margin-top: 5px"}
-    = t(:signup).capitalize
-    %i.icon-check
--elsif current_page?('/signup')
--else
-  = simple_form_for(:user, 
-                  :url => session_path("user"), 
-                  :html => { :class => 'form-horizontal, navbar-form' }) do |f|
-    .form-inputs
-      = f.input_field :login, :required => true, :label => false,
-                      :placeholder => t(:login), :style => 'width: 155px'
-      = f.input_field :password, :required => true, :label => false, 
-                      :placeholder => t(:password), :style => 'width: 155px'
-      = f.button :submit, t(:signin).capitalize, :class => "btn btn-primary"
-      %a.btn{:href => signup_path, :style => "margin-top: 5px"}
-        = t(:signup).capitalize
-        %i.icon-check
