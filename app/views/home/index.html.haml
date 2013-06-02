@@ -30,14 +30,14 @@
 
   -when 'skills'
     %h4.section-header #{s.header.upcase}
-    %dl{class: "dl-horizontal", id: 'skillsets', data: {'update-position' => sort_skillsets_path} }
+    %dl{ class: "dl-horizontal", id: 'skillsets', data: {'update-position' => sort_skillsets_path} }
       -s.subsections_ordered_by_position.each do |skillset|
-        %div{id: [skillset.class.name.downcase, skillset.id]}
+        %div{ id: [skillset.class.name.downcase, skillset.id] }
           %dt.skillset #{skillset.header}
           %dd.skillset
-            %div{id: ['skills', skillset.id], data: {'update-position' => sort_skills_path} }
+            %div{ id: ['skills', skillset.id] }
               -skillset.skills_order_by_position.each do |i|
-                %span{id: ["skill", skillset.id, i.id], class: 'skill'} #{i.description}
+                %span{ id: ["skill", skillset.id, i.id], class: 'skill' } #{i.description}
 
   -when 'experience'
     %h4.section-header #{s.header.upcase}
